@@ -5,7 +5,7 @@ import PetBrowser from './PetBrowser'
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
       pets: [],
@@ -15,30 +15,29 @@ class App extends React.Component {
     }
   }
 
-    onChangeType = (event) => {
-      this.setState({
-        filters: {
-          ...this.state.filters, type: event.target.value
-        }
-      });
-    }
+  onChangeType = ({ target: { value } }) => {
+   this.setState({ filters: { ...this.state.filters, type: value } });
+ };
 
-    onFindPetClick = () => {
-      let url= `/api/pets`
-      if(this.state.filters.type !== 'all') {
-        url += `?type=${this.state.filters.type}`
-      }
-      fetch(url)
-        .then(res=> res.json())
-        .then(pets => this.setState({ pets }));
-    }
+ fetchPets = () => {
+   let endpoint = "/api/pets";
 
-      onAdoptPet = petID => {
-        const pets = this.state.pets.map(p => {
-          return p.id === petId ? { ...p, isAdopted: true } : p;
-        });
-        this.setState({ pets });
-      }
+   if (this.state.filters.type !== "all") {
+     endpoint += `?type=${this.state.filters.type}`;
+   }
+
+   fetch(endpoint)
+     .then(res => res.json())
+     .then(pets => this.setState({ pets }));
+ };
+
+ onAdoptPet = petId => {
+   const pets = this.state.pets.map(pet => {
+     return pet.id === petId ? { ...pet, isAdopted: true } : pet;
+   });
+   this.setState({ pets });
+ };
+
   render() {
     return (
       <div className="ui container">
