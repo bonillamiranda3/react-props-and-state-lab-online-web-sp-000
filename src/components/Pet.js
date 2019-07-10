@@ -27,7 +27,7 @@ class Pet extends React.Component {
             className="ui priimary button">Adopt pet</button>
         )}
 
-        
+
         </div>
       </div>
     );
