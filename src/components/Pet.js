@@ -24,7 +24,7 @@ class Pet extends React.Component {
         ) : (
           <button
             onClick={() => this.props.onAdoptPet(this.props.pet.id)}
-            className="ui priimary button">Adopt pet</button>
+            className="ui primary button">Adopt pet</button>
         )}
 
 
